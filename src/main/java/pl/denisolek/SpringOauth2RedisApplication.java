@@ -23,6 +23,7 @@ public class SpringOauth2RedisApplication {
 	public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository repository) throws Exception {
 		if (repository.count() == 0) {
 			repository.save(new User("user", "password", Arrays.asList(new Role("USER"), new Role("ACTUATOR"))));
+			repository.save(new User("user2", "password2", Arrays.asList(new Role("GUEST"))));
 		}
 		builder.userDetailsService(userDetailsService(repository));
 	}
